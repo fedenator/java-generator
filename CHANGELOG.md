@@ -1,5 +1,6 @@
-## 2.1.2 - Enhancements
+## 2.2.0 - Enhancements
 * Added support for variables with multiple generics such as Map<T, T>.
+* Added support for multiple variable declarations on one line (ie. public int a, b, c;).
 
 ## 2.1.1 - Enhancements
 * Added code documentation
