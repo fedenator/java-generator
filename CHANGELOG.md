@@ -1,3 +1,6 @@
+## 2.1.2 - Enhancements
+* Added support for variables with multiple generics such as Map<T, T>.
+
 ## 2.1.1 - Enhancements
 * Added code documentation
 * Boolean values now use 'is' prefix instead of 'get' in getter generation.
