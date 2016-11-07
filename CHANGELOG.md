@@ -1,3 +1,6 @@
+## 2.2.1 - Enhancements
+* Fixed bugs that created malformed constructors and toString methods if there were no variables declared.
+
 ## 2.2.0 - Enhancements
 * Added support for variables with multiple generics such as Map<T, T>.
 * Added support for multiple variable declarations on one line (ie. public int a, b, c;).

@@ -140,10 +140,10 @@ module.exports =
 
             if counter + 1 < size
                 code += ", "
-            else
-                code += "]\";\n\t}\n"
 
             counter++
+
+        code += "]\";\n\t}\n"
 
         return code
 
@@ -188,43 +188,43 @@ module.exports =
         parser.setContent(cmd.getEditorText())
         className = parser.getClassName()
 
+        # First, an empty one
         # Make method comments
         if atom.config.get('java-generator.toggles.generateMethodComments')
             code += "\n\t/**\n\t* Default empty "
             code += className
             code += " constructor\n\t*/"
 
-        # First, an empty one
+        # Empty constructor
         code += "\n\tpublic " + className + "() {\n\t\tsuper();\n\t}\n"
 
-        # Make method comments
-        if atom.config.get('java-generator.toggles.generateMethodComments')
-            code += "\n\t/**\n\t* Default "
-            code += className
-            code += " constructor\n\t*/"
-
         # Second, one with all variables
-        code += "\n\tpublic " + className + "("
-
-        # add params
-        counter = 0
         size = data.length
-        for variable in data
-            code += variable.getType() + " " + variable.getName()
-            if counter + 1 < size
-                code += ", "
-            else
-                code += ")"
+        if (size > 0)
+            # Make method comments
+            if atom.config.get('java-generator.toggles.generateMethodComments')
+                code += "\n\t/**\n\t* Default "
+                code += className
+                code += " constructor\n\t*/"
 
-            counter++
+            code += "\n\tpublic " + className + "("
 
-        code += " {\n\t\tsuper();"
+            # add params
+            counter = 0
+            for variable in data
+                code += variable.getType() + " " + variable.getName()
+                if counter + 1 < size
+                    code += ", "
 
-        # Add assignments
-        for variable in data
-            code += "\n\t\tthis." + variable.getName() + " = " + variable.getName() + ";"
+                counter++
 
-        code += "\n\t}\n"
+            code += ") {\n\t\tsuper();"
+
+            # Add assignments
+            for variable in data
+                code += "\n\t\tthis." + variable.getName() + " = " + variable.getName() + ";"
+
+            code += "\n\t}\n"
 
         return code
 
