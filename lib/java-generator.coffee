@@ -234,6 +234,10 @@ module.exports =
             alert ('This command is meant for java files only.')
             return
 
+        # Check if file is empty
+        if @fileIsEmpty()
+            return
+
         # Parse variables
         data = @parseVars(false, false)
 
@@ -250,6 +254,10 @@ module.exports =
         editor = atom.workspace.getActiveTextEditor()
         unless editor.getGrammar().scopeName is 'text.java' or editor.getGrammar().scopeName is 'source.java'
             alert ('This command is meant for java files only.')
+            return
+
+        # Check if file is empty
+        if @fileIsEmpty()
             return
 
         # Parse variables
@@ -270,6 +278,10 @@ module.exports =
             alert ('This command is meant for java files only.')
             return
 
+        # Check if file is empty
+        if @fileIsEmpty()
+            return
+
         # Parse variables
         data = @parseVars(false, true)
 
@@ -282,6 +294,10 @@ module.exports =
         editor = atom.workspace.getActiveTextEditor()
         unless editor.getGrammar().scopeName is 'text.java' or editor.getGrammar().scopeName is 'source.java'
             alert ('This command is meant for java files only.')
+            return
+
+        # Check if file is empty
+        if @fileIsEmpty()
             return
 
         # Parse variables
@@ -298,6 +314,10 @@ module.exports =
             alert ('This command is meant for java files only.')
             return
 
+        # Check if file is empty
+        if @fileIsEmpty()
+            return
+
         # Parse variables
         data = @parseVars(true, true)
 
@@ -310,6 +330,10 @@ module.exports =
         editor = atom.workspace.getActiveTextEditor()
         unless editor.getGrammar().scopeName is 'text.java' or editor.getGrammar().scopeName is 'source.java'
             alert ('This command is meant for java files only.')
+            return
+
+        # Check if file is empty
+        if @fileIsEmpty()
             return
 
         # Parse variables
@@ -327,6 +351,14 @@ module.exports =
         # Insert code
         cmd = new Command()
         cmd.insertAtEndOfFile(code)
+
+    fileIsEmpty: ->
+        cmd = new Command()
+        unless cmd.getEditorText()
+            alert ('The file is empty.')
+            return true
+
+        return false
 
     config:
       toggles:

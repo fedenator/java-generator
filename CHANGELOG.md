@@ -1,4 +1,9 @@
-## 2.2.1 - Enhancements
+## 2.2.3 - Enhancements
+* Fixed handling of empty java files.
+* Fixed alert if there were no variables declared.
+* Improved detection of method signatures and class declarations.
+
+## 2.2.1/2.2.2 - Enhancements
 * Fixed bugs that created malformed constructors and toString methods if there were no variables declared.
 
 ## 2.2.0 - Enhancements
