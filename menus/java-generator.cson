@@ -28,9 +28,9 @@
 
 'menu': [
     {
-        'label': 'Packages'
+        'label': 'Packages',
         'submenu': [
-            'label': 'Java Generator'
+            'label': 'Java Generator',
             'submenu': [
                 {
                     'label': 'Getters and Setters'

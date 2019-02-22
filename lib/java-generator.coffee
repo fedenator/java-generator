@@ -183,22 +183,24 @@ module.exports =
         return code
 
     createEquals: (data) ->
-        console.log "generate equals"
+        cmd = new Command()
+        parser = new Parser()
+        parser.setContent(cmd.getEditorText())
         className = parser.getClassName()
 
         code = "\n"
         code += "\t@Override\n"
-        code += "\tpublic String equals(Object obj) {\n"
+        code += "\tpublic boolean equals(Object obj) {\n"
         code += "\t\tif (obj == null)\n"
         code += "\t\t\treturn false;\n"
         code += "\n"
         code += "\t\tif (this == obj)\n"
-        code += "\t\ŧ\ŧreturn false;\n"
+        code += "\t\t\treturn false;\n"
         code += "\n"
-        code += "\t\tif ( !(this instanceof obj) )\n"
-        code += "\t\ŧ\treturn false;\n"
+        code += "\t\tif ( !(obj instanceof "+className+") )\n"
+        code += "\t\t\treturn false;\n"
         code += "\n"
-        code += "\t\t"+className+" other = ("+className+") obj;\m"
+        code += "\t\t"+className+" other = ("+className+") obj;\n"
 
         for variable in data
             name = variable.getName()
@@ -206,11 +208,14 @@ module.exports =
 
             code += "\n"
             code += "\t\tif (this."+name+" == null) {\n"
-            code += "\t\t\ŧif (other."+name+" != null)\n"
-            code += "\t\t\ŧ\treturn false;\n"
-            code += "\t\ŧ} else if ( !this."+name+".equals(other."+name+") ){\n"
-            code += "\t\t\ŧreturn false;\n"
+            code += "\t\t\tif (other."+name+" != null)\n"
+            code += "\t\t\t\treturn false;\n"
+            code += "\t\t} else if ( !this."+name+".equals(other."+name+") ){\n"
+            code += "\t\t\treturn false;\n"
             code += "\t\t}\n"
+
+        code += "\n"
+        code += "\t\treturn true;\n"
 
         code += "\t}\n"
         code += "\n"
